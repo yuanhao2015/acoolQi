@@ -1,10 +1,3 @@
-/**
-* @Author: Aku
-* @Description:
-* @Email: 271738303@qq.com
-* @File: log_api
-* @Date: 2021-9-28 11:12
- */
 package v1
 
 import (

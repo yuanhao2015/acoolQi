@@ -1,10 +1,3 @@
-/**
-* @Author: Aku
-* @Description:
-* @Email: 271738303@qq.com
-* @File: operlog_service
-* @Date: 2021-9-28 11:16
- */
 package service
 
 import (

@@ -1,10 +1,3 @@
-/**
-* @Author: Aku
-* @Description:
-* @Email: 271738303@qq.com
-* @File: monitor_operlog
-* @Date: 2021-9-28 11:13
- */
 package req
 
 import "acoolqi-admin/pkg/base"

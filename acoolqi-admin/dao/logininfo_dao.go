@@ -1,10 +1,3 @@
-/**
-* @Author: Aku
-* @Description:
-* @Email: 271738303@qq.com
-* @File: Operlog_dao
-* @Date: 2021-9-28 11:17
- */
 package dao
 
 import (
