@@ -135,11 +135,16 @@ func recursiveTree(tree *Tree, nodes, selectedNodes []INode) {
 			continue
 		}
 		var flag = false
-		var component string
-		var redirect string
+		var (
+			component  string
+			redirect   string
+			alwaysShow bool
+		)
+
 		if v.GetParentId() == 1 && v.GetMenuType() == "M" {
 			component = "ParentView"
 			redirect = "noRedirect"
+			alwaysShow = true
 		}
 		m := make(map[string]interface{})
 		if v.GetData() != nil {
@@ -159,16 +164,17 @@ func recursiveTree(tree *Tree, nodes, selectedNodes []INode) {
 		}
 		if data.GetMenuId() == v.GetParentId() {
 			childTree := &Tree{
-				Name:      v.GetName(),
-				Data:      v.GetData(),
-				Path:      v.GetPath(),
-				Hidden:    flag,
-				Meta:      m,
-				Redirect:  redirect,
-				Component: component,
-				MenuType:  v.GetMenuType(),
-				Id:        v.GetId(),
-				Label:     v.GetLabel(),
+				AlwaysShow: alwaysShow,
+				Name:       v.GetName(),
+				Data:       v.GetData(),
+				Path:       v.GetPath(),
+				Hidden:     flag,
+				Meta:       m,
+				Redirect:   redirect,
+				Component:  component,
+				MenuType:   v.GetMenuType(),
+				Id:         v.GetId(),
+				Label:      v.GetLabel(),
 			}
 			// 递归之前，根据子节点和父节点确认 childTree 的选中状态
 			childTree.Selected = nodeSelected(v, selectedNodes, childTree.Children) || tree.Selected

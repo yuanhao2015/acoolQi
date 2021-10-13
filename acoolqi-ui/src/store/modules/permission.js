@@ -25,7 +25,7 @@ const permission = {
       // 顶部导航菜单默认添加统计报表栏指向首页
       const index = [{
         path: 'index',
-        meta: { title: '统计报表', icon: 'dashboard'}
+        meta: { title: '统计报表', icon: 'dashboard' }
       }]
       state.topbarRouters = routes.concat(index);
     },
@@ -58,11 +58,17 @@ const permission = {
 // 遍历后台传来的路由字符串，转换为组件对象
 function filterAsyncRouter(asyncRouterMap, lastRouter = false, type = false) {
   return asyncRouterMap.filter(route => {
-    if (route.menuType=="F"){
+    if (route.menuType == "F") {
       return
     }
     if (type && route.children) {
-      route.children = filterChildren(route.children)
+      const index = route.children.findIndex(value => {
+        return value.menuType == 'F'
+      })
+      if (index != -1) {
+        route.children = filterChildren(route.children)
+      }
+
     }
     if (route.component) {
       // Layout ParentView 组件特殊处理
@@ -89,31 +95,35 @@ function filterAsyncRouter(asyncRouterMap, lastRouter = false, type = false) {
 function filterChildren(childrenMap, lastRouter = false) {
   var children = []
   childrenMap.forEach((el, index) => {
-    if (el.children && el.children.length) {
-      
-      if (el.component === 'ParentView') {
-        el.children.forEach(c => {
-          c.path = el.path + '/' + c.path
-          if (c.children && c.children.length) {
-            children = children.concat(filterChildren(c.children, c))
-            return
-          }
-          children.push(c)
-        })
-        return
-      }
-    }
-    if (lastRouter) {
-      el.path = lastRouter.path + '/' + el.path
-    }
-    children = children.concat(el)
-  })
 
-  console.log(children)
+    if (el.menuType != "F") {
+
+      if (el.children && el.children.length) {
+
+        if (el.component === 'ParentView') {
+          el.children.forEach(c => {
+            c.path = el.path + '/' + c.path
+            if (c.children && c.children.length) {
+              children = children.concat(filterChildren(c.children, c))
+              return
+            }
+            children.push(c)
+          })
+          return
+        }
+      }
+      if (lastRouter) {
+        el.path = lastRouter.path + '/' + el.path
+      }
+
+      children = children.concat(el)
+    }
+  })
   return children
 }
 
 export const loadView = (view) => { // 路由懒加载
+  // console.log(view, "view")
   return (resolve) => require([`@/views/${view}`], resolve)
 }
 
