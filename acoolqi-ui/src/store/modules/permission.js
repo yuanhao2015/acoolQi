@@ -3,6 +3,7 @@ import { getRouters } from '@/api/menu'
 import Layout from '@/layout/index'
 import ParentView from '@/components/ParentView';
 import InnerLink from '@/layout/components/InnerLink'
+import { HTML5_FMT } from 'moment';
 
 const permission = {
   state: {
@@ -57,6 +58,9 @@ const permission = {
 // 遍历后台传来的路由字符串，转换为组件对象
 function filterAsyncRouter(asyncRouterMap, lastRouter = false, type = false) {
   return asyncRouterMap.filter(route => {
+    if (route.menuType=="F"){
+      return
+    }
     if (type && route.children) {
       route.children = filterChildren(route.children)
     }
@@ -86,6 +90,7 @@ function filterChildren(childrenMap, lastRouter = false) {
   var children = []
   childrenMap.forEach((el, index) => {
     if (el.children && el.children.length) {
+      
       if (el.component === 'ParentView') {
         el.children.forEach(c => {
           c.path = el.path + '/' + c.path
@@ -103,6 +108,8 @@ function filterChildren(childrenMap, lastRouter = false) {
     }
     children = children.concat(el)
   })
+
+  console.log(children)
   return children
 }
 
