@@ -460,3 +460,17 @@
 {"client_ip":"10.10.24.5","latency_time":2000100,"level":"info","msg":"","req_method":"GET","req_uri":"/api/v1/system/dict/data/type/sys_notice_type","status_code":200,"time":"2021-10-13 16:36:37"}
 {"client_ip":"10.10.24.5","latency_time":2000100,"level":"info","msg":"","req_method":"GET","req_uri":"/api/v1/system/dict/data/type/sys_notice_status","status_code":200,"time":"2021-10-13 16:36:37"}
 {"client_ip":"10.10.24.5","latency_time":5000300,"level":"info","msg":"","req_method":"GET","req_uri":"/api/v1/system/notice/list?pageNum=1\u0026pageSize=10","status_code":200,"time":"2021-10-13 16:36:37"}
+{"client_ip":"10.10.24.5","latency_time":4000200,"level":"info","msg":"","req_method":"GET","req_uri":"/api/v1/system/dict/data/type/sys_notice_type","status_code":200,"time":"2021-10-13 16:40:35"}
+{"client_ip":"10.10.24.5","latency_time":3000200,"level":"info","msg":"","req_method":"GET","req_uri":"/api/v1/system/dict/data/type/sys_notice_status","status_code":200,"time":"2021-10-13 16:40:35"}
+{"client_ip":"10.10.24.5","latency_time":5000300,"level":"info","msg":"","req_method":"GET","req_uri":"/api/v1/system/notice/list?pageNum=1\u0026pageSize=10","status_code":200,"time":"2021-10-13 16:40:35"}
+{"client_ip":"10.10.24.5","latency_time":7000400,"level":"info","msg":"","req_method":"GET","req_uri":"/api/v1/getInfo","status_code":200,"time":"2021-10-13 16:40:43"}
+{"client_ip":"10.10.24.5","latency_time":17001000,"level":"info","msg":"","req_method":"GET","req_uri":"/api/v1/getRouters","status_code":200,"time":"2021-10-13 16:40:44"}
+{"client_ip":"10.10.24.5","latency_time":2000100,"level":"info","msg":"","req_method":"GET","req_uri":"/api/v1/system/dict/data/type/sys_notice_status","status_code":200,"time":"2021-10-13 16:40:45"}
+{"client_ip":"10.10.24.5","latency_time":2000100,"level":"info","msg":"","req_method":"GET","req_uri":"/api/v1/system/dict/data/type/sys_notice_type","status_code":200,"time":"2021-10-13 16:40:45"}
+{"client_ip":"10.10.24.5","latency_time":13000800,"level":"info","msg":"","req_method":"GET","req_uri":"/api/v1/system/notice/list?pageNum=1\u0026pageSize=10","status_code":200,"time":"2021-10-13 16:40:45"}
+{"client_ip":"10.10.24.5","latency_time":1000000,"level":"info","msg":"","req_method":"GET","req_uri":"/api/v1/system/dict/data/type/sys_notice_status","status_code":200,"time":"2021-10-13 16:40:52"}
+{"client_ip":"10.10.24.5","latency_time":4000200,"level":"info","msg":"","req_method":"GET","req_uri":"/api/v1/system/notice/list?pageNum=1\u0026pageSize=10","status_code":200,"time":"2021-10-13 16:40:52"}
+{"client_ip":"10.10.24.5","latency_time":2000100,"level":"info","msg":"","req_method":"GET","req_uri":"/api/v1/system/dict/data/type/sys_notice_type","status_code":200,"time":"2021-10-13 16:40:52"}
+{"client_ip":"10.10.24.5","latency_time":7000400,"level":"info","msg":"","req_method":"GET","req_uri":"/api/v1/system/dict/data/type/sys_notice_status","status_code":200,"time":"2021-10-13 16:49:23"}
+{"client_ip":"10.10.24.5","latency_time":9000600,"level":"info","msg":"","req_method":"GET","req_uri":"/api/v1/system/dict/data/type/sys_notice_type","status_code":200,"time":"2021-10-13 16:49:23"}
+{"client_ip":"10.10.24.5","latency_time":12000700,"level":"info","msg":"","req_method":"GET","req_uri":"/api/v1/system/notice/list?pageNum=1\u0026pageSize=10","status_code":200,"time":"2021-10-13 16:49:23"}
