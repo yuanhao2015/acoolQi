@@ -15,6 +15,7 @@ type Tree struct {
 	Component       string      `json:"component,omitempty"`
 	AlwaysShow      bool        `json:"alwaysShow"`
 	Data            interface{} `json:"-"` //自定义对象
+	MenuType        string      `json:"menuType"`
 	Meta            interface{} `json:"meta"`
 	Leaf            bool        `json:"-"`                  //叶子节点
 	Selected        bool        `json:"-"`                  //选中
@@ -38,6 +39,8 @@ type INode interface {
 	IsRoot() bool
 	// GetPath 路径
 	GetPath() string
+	// GetMenuType
+	GetMenuType() string
 	GetId() int
 	GetLabel() string
 }
@@ -71,7 +74,9 @@ func GenerateTree(nodes, selectedNodes []INode) (trees []Tree) {
 
 	for _, v := range roots {
 		var flag = false
+
 		var component = "Layout"
+
 		m := make(map[string]interface{})
 		if v.GetData() != nil {
 			menu := v.GetData().(models.SysMenu)
@@ -130,7 +135,12 @@ func recursiveTree(tree *Tree, nodes, selectedNodes []INode) {
 			continue
 		}
 		var flag = false
-		var component = "Layout"
+		var component string
+		var redirect string
+		if v.GetParentId() == 1 && v.GetMenuType() == "M" {
+			component = "ParentView"
+			redirect = "noRedirect"
+		}
 		m := make(map[string]interface{})
 		if v.GetData() != nil {
 			menu := v.GetData().(models.SysMenu)
@@ -154,7 +164,9 @@ func recursiveTree(tree *Tree, nodes, selectedNodes []INode) {
 				Path:      v.GetPath(),
 				Hidden:    flag,
 				Meta:      m,
+				Redirect:  redirect,
 				Component: component,
+				MenuType:  v.GetMenuType(),
 				Id:        v.GetId(),
 				Label:     v.GetLabel(),
 			}

@@ -1,13 +1,13 @@
 package v1
 
 import (
-	"github.com/gin-gonic/gin"
 	"acoolqi-admin/models"
 	"acoolqi-admin/models/req"
 	"acoolqi-admin/pkg/library/tree/tree_menu"
 	"acoolqi-admin/pkg/library/user_util"
 	"acoolqi-admin/pkg/resp"
 	"acoolqi-admin/service"
+	"github.com/gin-gonic/gin"
 	"strconv"
 	"time"
 )
@@ -48,6 +48,7 @@ func (a MenuApi) RoleMenuTreeSelect(c *gin.Context) {
 	//获取当前登录用户
 	info := user_util.GetUserInfo(c)
 	menuList := a.menuService.GetMenuTreeByUserId(info)
+	//fmt.Println(menuList)
 	menus := tree_menu.SystemMenus{}
 	tree := menus.GetTree(menuList)
 	ids := a.menuService.SelectMenuListByRoleId(roleId)

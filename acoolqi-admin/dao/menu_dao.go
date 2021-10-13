@@ -30,7 +30,7 @@ func (d MenuDao) GetMenuAll() *[]models.SysMenu {
 	menus := make([]models.SysMenu, 0)
 	session := SqlDB.Table([]string{models.SysMenu{}.TableName(), "m"})
 	err := session.Distinct("m.menu_id").Cols("m.parent_id", "m.menu_name", "m.path", "m.component", "m.visible", "m.status", "m.perms", "m.is_frame", "m.is_cache", "m.menu_type", "m.icon", "m.order_num", "m.create_time").
-		Where("m.menu_type in ('M', 'C')").And("m.status = 0").OrderBy("m.parent_id").OrderBy("m.order_num").Find(&menus)
+		Where("m.menu_type in ('M', 'C','F')").And("m.status = 0").OrderBy("m.parent_id").OrderBy("m.order_num").Find(&menus)
 	if err != nil {
 		acoolTools.Logs.ErrorLog().Println(err)
 		return nil

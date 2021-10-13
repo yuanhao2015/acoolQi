@@ -33,6 +33,11 @@ func (SysMenu) TableName() string {
 func (s SysMenu) GetPath() string {
 	return s.Path
 }
+
+func (s SysMenu) GetMenuType() string {
+	return s.MenuType
+}
+
 func (s SysMenu) GetName() string {
 	return strings.Title(s.Path)
 }
