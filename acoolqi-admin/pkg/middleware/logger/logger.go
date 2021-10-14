@@ -130,6 +130,11 @@ func LoggerToFile() gin.HandlerFunc {
 			}
 		}
 
+		em, bl := c.Get("error_msg")
+		var errorMsg = ""
+		if bl {
+			errorMsg = em.(string)
+		}
 		st, bl := c.Get("status")
 		var statusBus = 0
 		if bl {
@@ -159,7 +164,7 @@ func LoggerToFile() gin.HandlerFunc {
 			"req_uri":      reqUri,
 		}).Info()
 		if c.Request.Method != "OPTIONS" && statusCode != 404 && reqMethod != "GET" {
-			SetDBOperLog(c, clientIP, reqUri, body, result, statusBus)
+			SetDBOperLog(c, clientIP, reqUri, body, result, statusBus, errorMsg)
 		}
 	}
 }
@@ -186,7 +191,7 @@ func LoggerToMQ() gin.HandlerFunc {
 }
 
 // SetDBOperLog 写入操作日志表
-func SetDBOperLog(c *gin.Context, clientIP string, reqUri string, body string, result string, status int) {
+func SetDBOperLog(c *gin.Context, clientIP string, reqUri string, body string, result string, status int, errorMsg string) {
 	if status == http.StatusOK {
 		status = 0
 	} else {
@@ -238,7 +243,7 @@ func SetDBOperLog(c *gin.Context, clientIP string, reqUri string, body string, r
 		OperParam:     body,
 		JsonResult:    result,
 		Status:        status,
-		ErrorMsg:      "",
+		ErrorMsg:      errorMsg,
 		OperTime:      time.Now(),
 	}
 	//fmt.Println(db)

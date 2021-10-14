@@ -42,6 +42,7 @@ func ErrorResp(data ...interface{}) *Response {
 			response.Data = value.(interface{})
 		}
 	}
+
 	return &response
 }
 
@@ -63,6 +64,7 @@ func Error(c *gin.Context, data ...interface{}) {
 	}
 	c.Set("status", http.StatusInternalServerError)
 	c.Set("result", response)
+	c.Set("error_msg", response.Msg)
 	c.JSON(200, response)
 	return
 }
@@ -84,6 +86,7 @@ func ParamError(c *gin.Context, data ...interface{}) {
 	}
 	c.Set("status", http.StatusBadRequest)
 	c.Set("result", response)
+	c.Set("error_msg", response.Msg)
 	c.JSON(200, response)
 	return
 }
