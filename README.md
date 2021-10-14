@@ -48,7 +48,7 @@ npm run dev
 ```
 浏览器访问 http://localhost:80
 
-##docker镜像构建
+## docker镜像构建
 [docker安装使用请参考官方](https://www.docker.com/)
 1. 根据情况修改Dockerfile文件
 2. 在项目根目录下使用命令docker build -t <你要出的进行名>:<版本号> .
