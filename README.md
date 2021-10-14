@@ -16,10 +16,10 @@
 
 
 ## 配置
-项目数据库文件 /data/db.sql 创建数据库导入后修改配置/config/config-*.ini
+项目数据库文件 /data/acoolqi-admin.sql 创建数据库导入后修改配置/config/config-*.ini
 
 
-##运行
+## 运行
 
 本系统是前后端分离
 
@@ -64,4 +64,3 @@ npm run dev
 >excelize [https://github.com/qax-os/excelize](https://github.com/qax-os/excelize)
 >
 >xorm [https://github.com/go-xorm/xorm](https://github.com/go-xorm/xorm)
-
