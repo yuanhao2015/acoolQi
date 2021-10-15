@@ -17,6 +17,9 @@ const user = {
     SET_NAME: (state, name) => {
       state.name = name
     },
+    SET_NICK_NAME:(state,nickname)=>{
+      state.nickName = nickname
+    },
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar
     },
@@ -58,6 +61,7 @@ const user = {
             commit('SET_ROLES', ['ROLE_DEFAULT'])
           }
           commit('SET_NAME', user.userName)
+          commit('SET_NICK_NAME',user.nickName)
           commit('SET_AVATAR', avatar)
           resolve(res)
         }).catch(error => {
