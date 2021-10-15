@@ -1,12 +1,12 @@
 package router
 
 import (
-	v1 "acoolqi-admin/api/v1"
+	"acoolqi-admin/api/v1/system"
 	"github.com/gin-gonic/gin"
 )
 
 func initConfigRouter(router *gin.RouterGroup) {
-	v := new(v1.ConfigApi)
+	v := new(system.ConfigApi)
 	group := router.Group("/system/config")
 	{
 		//根据参数键名查询参数值

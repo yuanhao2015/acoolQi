@@ -1,10 +1,12 @@
 package router
 
-import "github.com/gin-gonic/gin"
-import v1 "acoolqi-admin/api/v1"
+import (
+	"acoolqi-admin/api/v1/system"
+	"github.com/gin-gonic/gin"
+)
 
 func initNoticeRouter(router *gin.RouterGroup) {
-	v := new(v1.NoticeApi)
+	v := new(system.NoticeApi)
 	group := router.Group("/system/notice")
 	{
 		group.GET("/list", v.List)

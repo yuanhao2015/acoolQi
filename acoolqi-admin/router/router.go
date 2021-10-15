@@ -43,6 +43,10 @@ func Init() *gin.Engine {
 		initOperlogRouter(v1Router)
 		//注册登录日志路由
 		initLogininfoRouter(v1Router)
+		//服务监控路由
+		initMonitorServerRouter(v1Router)
+		//在线用户路由
+		initUserOnlineRouter(v1Router)
 	}
 	return router
 }

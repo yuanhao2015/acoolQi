@@ -4,7 +4,7 @@ import (
 	"acoolqi-admin/config"
 	"acoolqi-admin/models"
 	"acoolqi-admin/pkg/jwt"
-	"acoolqi-admin/service"
+	"acoolqi-admin/service/system"
 	"bufio"
 	"bytes"
 	"encoding/json"
@@ -225,7 +225,7 @@ func SetDBOperLog(c *gin.Context, clientIP string, reqUri string, body string, r
 		businessType = 10
 	}
 
-	var menuService service.MenuService
+	var menuService system.MenuService
 	perms := menuService.GetMenuPerms(strings.Join(methods, ":"))
 
 	db := models.SysOperLog{
@@ -247,6 +247,6 @@ func SetDBOperLog(c *gin.Context, clientIP string, reqUri string, body string, r
 		OperTime:      time.Now(),
 	}
 	//fmt.Println(db)
-	var operlogService service.OperlogService
+	var operlogService system.OperlogService
 	operlogService.Add(db)
 }

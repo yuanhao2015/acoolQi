@@ -1,13 +1,13 @@
 package router
 
 import (
-	v1 "acoolqi-admin/api/v1"
+	"acoolqi-admin/api/v1/system"
 	"github.com/gin-gonic/gin"
 )
 
 //初始化岗位路由
 func initPostRouter(router *gin.RouterGroup) {
-	v := new(v1.PostApi)
+	v := new(system.PostApi)
 	group := router.Group("/system/post")
 	{
 		//查询岗位数据

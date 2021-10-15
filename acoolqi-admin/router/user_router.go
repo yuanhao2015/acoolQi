@@ -1,13 +1,13 @@
 package router
 
 import (
-	v1 "acoolqi-admin/api/v1"
+	"acoolqi-admin/api/v1/system"
 	"github.com/gin-gonic/gin"
 )
 
 //用户路由
 func initUserRouter(router *gin.RouterGroup) {
-	userApi := new(v1.UserApi)
+	userApi := new(system.UserApi)
 	userRouter := router.Group("/system/user")
 	{
 		userRouter.GET("/list", userApi.Find)

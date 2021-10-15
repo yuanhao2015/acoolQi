@@ -1,13 +1,13 @@
 package router
 
 import (
-	v1 "acoolqi-admin/api/v1"
+	"acoolqi-admin/api/v1/system"
 	"github.com/gin-gonic/gin"
 )
 
 //部门接口操作
 func initDeptRouter(router *gin.RouterGroup) {
-	v := new(v1.DeptApi)
+	v := new(system.DeptApi)
 	group := router.Group("/system/dept")
 	{
 		//获取部门下拉树列表

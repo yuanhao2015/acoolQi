@@ -1,12 +1,12 @@
 package router
 
 import (
-	v1 "acoolqi-admin/api/v1"
+	"acoolqi-admin/api/v1/system"
 	"github.com/gin-gonic/gin"
 )
 
 func initMenuRouter(router *gin.RouterGroup) {
-	v := new(v1.MenuApi)
+	v := new(system.MenuApi)
 	vg := router.Group("/system/menu")
 	{
 		//查询菜单数据

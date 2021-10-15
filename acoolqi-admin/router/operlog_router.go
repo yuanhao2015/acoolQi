@@ -8,12 +8,12 @@
 package router
 
 import (
-	v1 "acoolqi-admin/api/v1"
+	"acoolqi-admin/api/v1/system"
 	"github.com/gin-gonic/gin"
 )
 
 func initOperlogRouter(router *gin.RouterGroup) {
-	v := new(v1.OperlogApi)
+	v := new(system.OperlogApi)
 	group := router.Group("/monitor/operlog")
 	{
 		//列表

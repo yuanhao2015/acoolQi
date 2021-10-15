@@ -2,7 +2,7 @@ package user_util
 
 import (
 	"acoolqi-admin/config"
-	"acoolqi-admin/dao"
+	"acoolqi-admin/dao/system"
 	"acoolqi-admin/models"
 	"acoolqi-admin/models/response"
 	"acoolqi-admin/pkg/jwt"
@@ -34,7 +34,7 @@ func CheckLockToken(c *gin.Context) bool {
 	if server.Lock == "0" {
 		//获取redis中的token数据
 		info := GetUserInfo(c)
-		get, err := dao.RedisDB.GET(info.UserName)
+		get, err := system.RedisDB.GET(info.UserName)
 		if err != nil {
 			acoolTools.Logs.ErrorLog().Println(err)
 			return false
@@ -52,10 +52,10 @@ func CheckLockToken(c *gin.Context) bool {
 
 // SaveRedisToken 将token存入到redis
 func SaveRedisToken(key string, s string) {
-	server := config.GetServerCfg()
-	if server.Lock == "0" {
-		dao.RedisDB.SETEX(key, 3600, s)
-	}
+	//server := config.GetServerCfg()
+	//if server.Lock == "0" {
+	system.RedisDB.SETEX(key, 3600, s)
+	//}
 }
 
 // CheckIsAdmin 判断是否是超级管理员

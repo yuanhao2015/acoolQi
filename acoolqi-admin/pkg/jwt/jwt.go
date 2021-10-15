@@ -2,9 +2,11 @@ package jwt
 
 import (
 	"acoolqi-admin/config"
-	"acoolqi-admin/dao"
+	"acoolqi-admin/dao/system"
 	"acoolqi-admin/models"
+	"acoolqi-admin/models/req"
 	"acoolqi-admin/models/response"
+	"acoolqi-admin/service/monitor"
 	//"acoolqi-admin/service"
 
 	//"acoolqi-admin/service"
@@ -44,21 +46,24 @@ func JWTAuth() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
-		appServer := config.GetServerCfg()
-		lock := appServer.Lock
-		if lock == "0" {
-			get, err := dao.RedisDB.GET(claims.UserInfo.UserName)
-			if err == nil {
-				if !(get == s[1]) {
-					c.JSON(http.StatusOK, gin.H{
-						"status": 401,
-						"msg":    "您的账号已在其他终端登录，请重新登录",
-					})
-					c.Abort()
-					return
-				}
+		useronline := monitor.UserOnlineService{}
+		userloginInfo := useronline.GetByToken(s[1])
+		checkOnline(claims, useronline)
+		//appServer := config.GetServerCfg()
+		//lock := appServer.Lock
+		//if lock == "0" {
+		get, err := system.RedisDB.GET("users-" + claims.UserInfo.UserName + "-" + userloginInfo.Uuid)
+		if err == nil {
+			if get == "" {
+				c.JSON(http.StatusOK, gin.H{
+					"status": 401,
+					"msg":    "您的账号不存在或在其他设备登录，请重新登录",
+				})
+				c.Abort()
+				return
 			}
 		}
+		//}
 		if err != nil {
 			c.JSON(http.StatusOK, gin.H{
 				"status": 401,
@@ -70,6 +75,31 @@ func JWTAuth() gin.HandlerFunc {
 		// 继续交由下一个路由处理,并将解析出的信息传递下去
 		c.Set("claims", claims)
 	}
+}
+
+// 校验在线
+func checkOnline(claims *CustomClaims, useronline monitor.UserOnlineService) {
+	keys, _ := system.RedisDB.KEYS("users-" + claims.UserInfo.UserName + "*")
+	all, _ := useronline.FindAll(req.UserOnlineBody{
+		LoginName: claims.UserInfo.NickName,
+	})
+	notExit := make([]int64, 0)
+	var flag bool
+	for _, v := range *all {
+		for _, v1 := range keys {
+			if v.Uuid == strings.Split(v1, "-")[2] {
+				flag = true
+				break
+			}
+		}
+		if !flag {
+			//fmt.Println(v)
+			notExit = append(notExit, v.SessionId)
+		}
+	}
+
+	//删除无效的session
+	useronline.Remove(notExit)
 }
 
 // JWT 签名结构

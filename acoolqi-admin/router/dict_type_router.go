@@ -1,13 +1,13 @@
 package router
 
 import (
-	v1 "acoolqi-admin/api/v1"
+	"acoolqi-admin/api/v1/system"
 	"github.com/gin-gonic/gin"
 )
 
 //初始化字典类型路由
 func initDictTypeRouter(router *gin.RouterGroup) {
-	v := new(v1.DictTypeApi)
+	v := new(system.DictTypeApi)
 	group := router.Group("/system/dict/type")
 	{
 		//查询字典类型分页数据

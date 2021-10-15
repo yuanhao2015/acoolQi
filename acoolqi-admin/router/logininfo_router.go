@@ -8,12 +8,12 @@
 package router
 
 import (
-	v1 "acoolqi-admin/api/v1"
+	"acoolqi-admin/api/v1/system"
 	"github.com/gin-gonic/gin"
 )
 
 func initLogininfoRouter(router *gin.RouterGroup) {
-	v := new(v1.LogininfoApi)
+	v := new(system.LogininfoApi)
 	group := router.Group("/monitor/logininfor")
 	{
 		group.GET("/list", v.List)

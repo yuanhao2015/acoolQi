@@ -2,7 +2,7 @@ package main
 
 import (
 	"acoolqi-admin/config"
-	_ "acoolqi-admin/dao"
+	_ "acoolqi-admin/dao/system"
 	"acoolqi-admin/pkg/middleware/logger"
 	"acoolqi-admin/router"
 	"flag"

@@ -1,12 +1,12 @@
 package router
 
 import (
-	v1 "acoolqi-admin/api/v1"
+	"acoolqi-admin/api/v1/system"
 	"github.com/gin-gonic/gin"
 )
 
 func initRoleRouter(router *gin.RouterGroup) {
-	roleApi := new(v1.RoleApi)
+	roleApi := new(system.RoleApi)
 	group := router.Group("/system/role")
 	{
 		//查询角色数据
